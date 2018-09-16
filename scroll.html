@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        .fixed_bar{
+            height: 48px;
+            border-top: 2px solid red;
+            border-bottom: 2px solid red;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            transform: translateY(-200px);
+            transition: transform 2s ease;
+        }
+        .fixed_bar.active{
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body style="height: 2000px">
+    
+    <div class="fixed_bar">
+
+    </div>
+    <button id="show">出现</button>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        $(function(){
+            $(document).scroll(function(){
+                if( $(window).scrollTop() >= 200 ) {
+                    $(".fixed_bar").addClass('active');
+                    console.log(">200")
+                }else{
+                    $(".fixed_bar").removeClass('active');
+                    console.log("<200")
+                }
+            });
+        })
+    </script>
+</body>
+</html>

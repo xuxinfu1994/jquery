@@ -9,9 +9,12 @@
         .loading{
             display: none;
         }
+        body{
+            height: 2000px;
+        }
     </style>
 </head>
-<body>
+<body >
     
     <!--
         http://www.weather.com.cn/data/sk/101010100.html
@@ -29,33 +32,63 @@
     <script>
         $(function(){
 
-            $("#search").click(function(){
-                var code = $(".city_code").val();
-                if( code === '' ) return;
-                $.ajax({
-                    type : "get",
-                    url: `https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId=${code}`,
-                    dataType: 'json',
-                    beforeSend: function(){
-                        $(".loading").show();
-                    },
-                    complete: function(){
-                        $(".loading").hide(); 
-                    },
-                    success: function(data){
-                        var str = "";
-                        data.movies.map((item) => {
-                            str += `<li>${item.titleCn}</li>`;
-                        });
+            $(document).scroll(function(){
+                var $win = $(window);
+                var $doc = $(document);
 
-                        $(".movie_list").html(str);
-                    },
-                    error: function(){
-                        console.log("请求失败")
-                    }
-                })
+                if ( $win.height() + $win.scrollTop() == $doc.height() ) {
+                    $.ajax({
+                        type : "get",
+                        url: `https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId=292`,
+                        dataType: 'json',
+                        beforeSend: function(){
+                            $(".loading").show();
+                        },
+                        complete: function(){
+                            $(".loading").hide(); 
+                        },
+                        success: function(data){
+                            var str = "";
+                            data.movies.map((item) => {
+                                str += `<li>${item.titleCn}</li>`;
+                            });
 
+                            $(".movie_list").html(str);
+                        },
+                        error: function(){
+                            console.log("请求失败")
+                        }
+                    })
+                }
             })
+
+            // $("#search").click(function(){
+            //     var code = $(".city_code").val();
+            //     if( code === '' ) return;
+            //     $.ajax({
+            //         type : "get",
+            //         url: `https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId=${code}`,
+            //         dataType: 'json',
+            //         beforeSend: function(){
+            //             $(".loading").show();
+            //         },
+            //         complete: function(){
+            //             $(".loading").hide(); 
+            //         },
+            //         success: function(data){
+            //             var str = "";
+            //             data.movies.map((item) => {
+            //                 str += `<li>${item.titleCn}</li>`;
+            //             });
+
+            //             $(".movie_list").html(str);
+            //         },
+            //         error: function(){
+            //             console.log("请求失败")
+            //         }
+            //     })
+
+            // })
 
         });
     </script>
