@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./normal.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div>
+            <input type="text" placeholder="请输入图书名" class="book_name"> <input type="button" id="add_button" value="添加">
+        </div>
+        <ul class="books">
+            <li>11212</li>
+        </ul>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <script>
+        $(function(){
+            $("#add_button").click(function(){
+                var book_name = $(".book_name").val();
+                if( book_name == '' ) return;
+                var hasChongfu = false;
+                
+                $(".books li").each(function(item){
+                    if( $(this).text() == book_name ) {
+                        hasChongfu = true;
+                    }
+                });
+                
+                if( hasChongfu ) return;
+
+
+                var str = `<li>${book_name}</li>`;
+                
+                $(".books").append(str);
+                
+                $(".book_name").val("");
+
+
+
+
+
+            });
+            
+            // ------
+            $(window).keyup(function(e){
+                if( e.keyCode == 13 ) {
+                    $("#add_button").click();
+                }
+            })
+
+
+        });  
+    </script>
+
+</body>
+</html>

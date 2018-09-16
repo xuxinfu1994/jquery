@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+           
+        }
+        ul{
+            list-style: none;
+        }
+        .tab{
+            overflow: hidden;
+        }
+        .tab li{
+            float: left;
+            padding: 10px;
+            border-bottom: 1px solid red;
+            margin-right: 10px;
+        }
+        .nodes{
+            border: 1px solid red;
+        }
+        .content li{
+            height: 100px;
+            border: 1px solid red;
+            margin-top: 40px;
+            display: none;
+        }
+        .content li:first-child{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    
+    <button id="btn">设置</button>   
+
+    <ul>
+        <li class="no1">第一个</li>
+        <li class="no2">第二个</li>
+        <p>111121</p>
+        <li class="no3">第三个</li>
+        <li class="no4">第四个</li>
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <script>
+       $(function(){
+           
+
+           $("#btn").on("click", function(){
+            // //    $("ul li:not(.no3)").css('color', 'red');
+            //     $("ul li").not('.no2').css('color', 'red');
+
+                $("ul").has("p").css('color', 'red');
+           })
+            // $(".tab").on('click', 'li', function(){
+            //     var index = $(this).index();
+                
+            //     $('.content li').hide().eq(index).show();
+            // })
+
+
+            // $("#btn").on("click", function(){
+            //     $("img").attr("src", "https://dimg04.c-ctrip.com/images/300k0c0000006o8lx6651_C_228_132.jpg");
+            //     // alert(src);
+            // })
+
+            // $(".add_node").click(function(){
+            //     // $(".third").after("<li>第四个添加的元素</li>");
+            //     alert(
+            //         $(".nodes li").eq(2).text()
+            //     )
+            // })
+            
+          
+            
+            // $(".nodes").on("click", "li" ,function(){
+            //     var index = $(this).index(); // 索引
+            //     eq
+            // })
+
+        
+       })   
+
+
+    // document.getElementsByClassName("nodes")[0].onclick = function(){
+    //     alert("asdf")
+    // }
+
+
+    // document.getElementsByTagName("li")[0].onclick = function(e){
+    //     alert("li")
+    //     e.stopPropagation();
+
+    // }
+       
+       
+    </script>
+</body>
+</html>
