@@ -14,7 +14,6 @@
             <input type="text" placeholder="请输入图书名" class="book_name"> <input type="button" id="add_button" value="添加">
         </div>
         <ul class="books">
-            <li>11212</li>
         </ul>
     </div>
     
@@ -26,7 +25,7 @@
                 var book_name = $(".book_name").val();
                 if( book_name == '' ) return;
                 var hasChongfu = false;
-                
+
                 $(".books li").each(function(item){
                     if( $(this).text() == book_name ) {
                         hasChongfu = true;
@@ -36,17 +35,17 @@
                 if( hasChongfu ) return;
 
 
-                var str = `<li>${book_name}</li>`;
+                var str = `<li>${book_name} <a href="javascript:;" class="delete_item">删除</a></li>`;
                 
                 $(".books").append(str);
                 
                 $(".book_name").val("");
-
-
-
-
-
             });
+
+            // 删除某一列
+            $(".books").on("click", ".delete_item", function(){
+                $(this).parent("li").remove();
+            })
             
             // ------
             $(window).keyup(function(e){
