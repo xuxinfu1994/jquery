@@ -12,6 +12,7 @@
     <div class="wrapper">
         <div>
             <input type="text" placeholder="请输入图书名" class="book_name"> <input type="button" id="add_button" value="添加">
+            <input type="button" id="find_button" value="查询"">
         </div>
         <ul class="books">
         </ul>
@@ -33,9 +34,7 @@
                 });
                 
                 if( hasChongfu ) return;
-
-
-                var str = `<li>${book_name} <a href="javascript:;" class="delete_item">删除</a></li>`;
+                var str = `<li><span>${book_name}</span> <a href="javascript:;" class="delete_item">删除</a></li>`;
                 
                 $(".books").append(str);
                 
@@ -45,8 +44,23 @@
             // 删除某一列
             $(".books").on("click", ".delete_item", function(){
                 $(this).parent("li").remove();
+                $(".book_name").val("")
             })
             
+            // 查找
+
+            $("#find_button").click(function(){
+                var book_name = $(".book_name").val();
+                console.log(book_name)
+                $(".books li").each(function(item){
+                    if( $(this).find('span').text() == book_name ) {
+                        $(this).siblings("li").hide();
+                        // console.log( $(this) )
+                    }
+                });
+
+            });
+
             // ------
             $(window).keyup(function(e){
                 if( e.keyCode == 13 ) {

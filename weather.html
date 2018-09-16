@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .loading{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <!--
+        http://www.weather.com.cn/data/sk/101010100.html
+    -->
+    <div class="weather">
+        <input type="text" placeholder="请输入城市码" class="city_code">
+        <input type="button" value="查询" id="search">
+    </div>
+    <h1>电影列表</h1>
+    <span class="loading">正在加载中...</span>
+    <ul class="movie_list">
+
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        $(function(){
+
+            $("#search").click(function(){
+                var code = $(".city_code").val();
+                if( code === '' ) return;
+                $.ajax({
+                    type : "get",
+                    url: `https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId=${code}`,
+                    dataType: 'json',
+                    beforeSend: function(){
+                        $(".loading").show();
+                    },
+                    complete: function(){
+                        $(".loading").hide(); 
+                    },
+                    success: function(data){
+                        var str = "";
+                        data.movies.map((item) => {
+                            str += `<li>${item.titleCn}</li>`;
+                        });
+
+                        $(".movie_list").html(str);
+                    },
+                    error: function(){
+                        console.log("请求失败")
+                    }
+                })
+
+            })
+
+        });
+    </script>
+</body>
+</html>
